@@ -17,7 +17,7 @@ namespace BrainWork.ATM.Data
         public string Pincode { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public string Status { get; set; }
+        public int StatusId { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BrainWork.ATM.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BrainWork.ATM.Data
@@ -8,6 +9,7 @@ namespace BrainWork.ATM.Data
     public class ATMContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<AccountType> AccountTypes { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
         {
             string connectionString = "Data Source=DESKTOP-4QP868O\\SQLEXPRESS;Initial Catalog=ATMproject;Integrated Security=True";
@@ -27,7 +29,9 @@ namespace BrainWork.ATM.Data
             modelBuilder.Entity<User>().Property(b => b.Pincode).HasColumnType("varchar(6)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.Mobile).HasColumnType("varchar(20)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.Email).HasColumnType("varchar(200)").IsRequired();
-            modelBuilder.Entity<User>().Property(b => b.Status).HasColumnType("varchar(20)");
+
+            modelBuilder.Entity<AccountType>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
+
         }
 
     }
