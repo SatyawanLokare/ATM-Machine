@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using BrainWork.ATM.Data.Model;
+using BrainWork.ATM.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BrainWork.ATM.Data
@@ -31,6 +31,7 @@ namespace BrainWork.ATM.Data
             modelBuilder.Entity<User>().Property(b => b.Email).HasColumnType("varchar(200)").IsRequired();
 
             modelBuilder.Entity<AccountType>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
+            modelBuilder.Entity<Status>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
 
         }
 

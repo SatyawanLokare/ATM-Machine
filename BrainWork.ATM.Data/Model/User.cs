@@ -18,6 +18,6 @@ namespace BrainWork.ATM.Data
         public string Mobile { get; set; }
         public string Email { get; set; }
         public int StatusId { get; set; }
-
+        public Status Status { get; set; }
     }
 }
