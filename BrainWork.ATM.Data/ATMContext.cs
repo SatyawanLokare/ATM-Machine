@@ -10,6 +10,8 @@ namespace BrainWork.ATM.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
+        public DbSet<Status> Status { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
         {
             string connectionString = "Data Source=DESKTOP-4QP868O\\SQLEXPRESS;Initial Catalog=ATMproject;Integrated Security=True";
@@ -32,6 +34,10 @@ namespace BrainWork.ATM.Data
 
             modelBuilder.Entity<AccountType>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Status>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
+
+            modelBuilder.Entity<Account>().Property(b => b.CustomerNumber).HasColumnType("varchar(20)").IsRequired();
+            modelBuilder.Entity<Account>().Property(b => b.AccountNumber).HasColumnType("varchar(20)").IsRequired();
+            modelBuilder.Entity<Account>().Property(b => b.AvailableBalance).HasColumnType("decimal(10,2)").IsRequired();
 
         }
 
