@@ -14,6 +14,7 @@ namespace BrainWork.ATM.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<DepositMode> DepositModes { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
         {
             string connectionString = "Data Source=DESKTOP-4QP868O\\SQLEXPRESS;Initial Catalog=ATMproject;Integrated Security=True";
@@ -23,6 +24,7 @@ namespace BrainWork.ATM.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //User
             modelBuilder.Entity<User>().Property(b => b.FirstName).HasColumnType("varchar(200)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.lastName).HasColumnType("varchar(200)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.Address1).HasColumnType("varchar(500)").IsRequired();
@@ -33,18 +35,22 @@ namespace BrainWork.ATM.Data
             modelBuilder.Entity<User>().Property(b => b.Pincode).HasColumnType("varchar(6)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.Mobile).HasColumnType("varchar(20)").IsRequired();
             modelBuilder.Entity<User>().Property(b => b.Email).HasColumnType("varchar(200)").IsRequired();
-
+            //Account type
             modelBuilder.Entity<AccountType>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Status>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
-
+            //Account
             modelBuilder.Entity<Account>().Property(b => b.CustomerNumber).HasColumnType("varchar(20)").IsRequired();
             modelBuilder.Entity<Account>().Property(b => b.AccountNumber).HasColumnType("varchar(20)").IsRequired();
             modelBuilder.Entity<Account>().Property(b => b.AvailableBalance).HasColumnType("decimal(10,2)").IsRequired();
-
+            //Deposit Model
             modelBuilder.Entity<DepositMode>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
-
+            //transactionType model
             modelBuilder.Entity<TransactionType>().Property(b => b.Name).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<TransactionType>().Property(b => b.ShortCode).HasColumnType("varchar(10)").IsRequired();
+            //Transaction Model
+            modelBuilder.Entity<Transaction>().Property(b => b.TransactionNumber).HasColumnType("varchar(20)").IsRequired();
+            modelBuilder.Entity<Transaction>().Property(b => b.TransactionDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Transaction>().Property(b => b.Amount).HasColumnType("decimal(10,2)").IsRequired();
         }
 
     }
