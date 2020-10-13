@@ -19,5 +19,6 @@ namespace BrainWork.ATM.Data
         public string Email { get; set; }
         public int StatusId { get; set; }
         public Status Status { get; set; }
+        public List<Account> Accounts { get; set; }
     }
 }
